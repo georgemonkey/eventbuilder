@@ -171,12 +171,12 @@ def searchruid():
     except:
         messagebox.showinfo("Information","RUID Is Not Located In Database")
 def delete():
-    ruid1=t1.get()
-    rname1=t2.get()
+    ruid1=t2.get()
+    rname1=t1.get()
     rplace1=t3.get()
     mydb=mysql.connector.connect(
     host="localhost",
-    database="Employee",
+    database="RB3",
     user="root",
     password="tyu@3434"
     
@@ -185,7 +185,7 @@ def delete():
     cursor=mydb.cursor()
    
 
-    sql=("DELETE FROM emp WHERE ruid=%s")
+    sql=("DELETE FROM runners WHERE ruid=%s")
     val=(ruid1,)
     cursor.execute(sql,val)
     mydb.commit()
