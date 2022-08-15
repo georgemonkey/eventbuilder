@@ -7,28 +7,30 @@ from turtle import clear, up
 import mysql.connector
 from numpy import place
 from time import sleep
+import customtkinter as ctk
+ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
+ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
 
-
-root=tk.Tk()
+root=ctk.CTk()
 root.geometry("800x500")
 root.title("Race Builder")
-l1=tk.Label(root,text="Enter Data", font=("times",14,"bold","underline"))
+l1=ctk.CTkLabel(root,text="Enter Data")
 l1.place(x=300, y=5)
 #form
-l2=tk.Label(root,text="Full Name:")
+l2=ctk.CTkLabel(root,text="Full Name:")
 l2.place(x=10,y=50)
-t1=tk.Entry(root)
+t1=ctk.CTkEntry(root)
 t1.place(x=125,y=50)
 #name^^^
-l3=tk.Label(root,text="Runner SID")
+l3=ctk.CTkLabel(root,text="Runner SID")
 l3.place(x=10,y=85)
-t2=tk.Entry(root)
+t2=ctk.CTkEntry(root)
 t2.place(x=125,y=85)
 #sid^^^
-l4=tk.Label(root,text="Place")
+l4=ctk.CTkLabel(root,text="Place")
 l4.place(x=10,y=120)
-t3=tk.Entry(root)
+t3=ctk.CTkEntry(root)
 t3.place(x=125,y=120)
 #place^^^
 
@@ -204,19 +206,19 @@ def clearscreen():
         
 
 #button to add
-b1=tk.Button(root,text="Add", command=add)
+b1=ctk.CTkButton(root,text="Add", command=add)
 b1.place(x=500,y=50)
-b2=tk.Button(root,text="Search By Name",command=searchname)
+b2=ctk.CTkButton(root,text="Search By Name",command=searchname)
 b2.place(x=500,y=150)
-b3=tk.Button(root,text="Search By Place",command=searchplace)
+b3=ctk.CTkButton(root,text="Search By Place",command=searchplace)
 b3.place(x=500,y=100)
-b4=tk.Button(root,text="Clear Data Entry",command=clearscreen)
+b4=ctk.CTkButton(root,text="Clear Data Entry",command=clearscreen)
 b4.place(x=500,y=200)
-b5=tk.Button(root,text="Update Via RUID", command=update)
+b5=ctk.CTkButton(root,text="Update Via RUID", command=update)
 b5.place(x=500,y=250)
-b6=tk.Button(root,text="Search By RUID",command=searchruid)
+b6=ctk.CTkButton(root,text="Search By RUID",command=searchruid)
 b6.place(x=500,y=300)
-b7=tk.Button(root,text="Delete By RUID",command=delete)
+b7=ctk.CTkButton(root,text="Delete By RUID",command=delete)
 b7.place(x=500,y=300)
 
 
