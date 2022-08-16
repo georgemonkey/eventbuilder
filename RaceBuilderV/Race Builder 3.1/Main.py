@@ -1,7 +1,7 @@
 from glob import glob
 from turtle import back, width
 import matplotlib.pyplot as pl
-import io
+
 from tkinter import *
 from PIL import Image, ImageTk
 import tkinter as tk
@@ -271,9 +271,9 @@ def main_window():
     b4.place(x=650,y=200)
     b5=ctk.CTkButton(root,text="Update Via RUID", command=update)
     b5.place(x=650,y=250)
-    b6=ctk.CTkButton(root,text="Search By RUID",command=searchruid)
+    b6=ctk.CTkButton(root,text="Search Via RUID",command=searchruid)
     b6.place(x=650,y=300)
-    b7=ctk.CTkButton(root,text="Delete By RUID",command=delete)
+    b7=ctk.CTkButton(root,text="Delete Via RUID",command=delete)
     b7.place(x=650,y=350)
     style=ttk.Style()
     style.configure("Treeview",
@@ -295,6 +295,6 @@ def main_window():
 
     #MYSQL
 
-    root.mainloop()
+    
 splashroot.after(3000, main_window)
 mainloop()
