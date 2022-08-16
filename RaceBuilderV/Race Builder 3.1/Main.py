@@ -1,15 +1,18 @@
-from cProfile import label
-from cgitb import text
+from glob import glob
+from turtle import back
+import matplotlib.pyplot as pl
+import io
+from tkinter import *
+from PIL import Image, ImageTk
 import tkinter as tk
-from tkinter import END, font
+from tkinter import END
 from tkinter import messagebox
-from turtle import clear, up
+from tkinter import filedialog
 import mysql.connector
-from numpy import place
-from time import sleep
+from tkinter import ttk
 import customtkinter as ctk
 ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
-ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
+ctk.set_default_color_theme("dark-blue")  # Themes: blue (default), dark-blue, green
 
 
 root=ctk.CTk()
@@ -34,7 +37,9 @@ t3=ctk.CTkEntry(root)
 t3.place(x=125,y=120)
 #place^^^
 
-   
+def cleartable():
+    for item in list1.get_children():
+        list1.delete(item)   
 
 def add():
     
@@ -64,6 +69,8 @@ def add():
     
     mydb.close()
     print("Connection Closed")
+    cleartable()
+    show()
 def searchname():
 
     
@@ -143,7 +150,8 @@ def update():
     cursor.execute(sql,val)
     mydb.commit()
     messagebox.showinfo("Information","Records Updated Succesfully")
-    
+    cleartable()
+    show()  
 def searchruid():
     try:   
         ruid1=t2.get() 
@@ -192,9 +200,30 @@ def delete():
     cursor.execute(sql,val)
     mydb.commit()
     messagebox.showinfo("Information","Records Deleted Succesfully")
-    
+    cleartable()
+    show()
+def show():
+    try:   
+        rname=t1.get() 
+        mydb=mysql.connector.connect(
+        host="localhost",
+        database="RB3",
+        user="root",
+        password="tyu@3434"
+        
+        )
+        cursor=mydb.cursor()
+        sql=("select ruid,rname,rplace from runners")   
+        
+        cursor.execute(sql)
+        records=cursor.fetchall()
+        print(records)
+        for i,(ruid,rname,rplace) in enumerate(records,start=1):
+            list1.insert("","end",values=(ruid,rname,rplace))
+            mydb.close()
 
-    
+    except:
+        messagebox.showinfo("Information","Name Is Not Located In Database")
     
     
 
@@ -207,20 +236,35 @@ def clearscreen():
 
 #button to add
 b1=ctk.CTkButton(root,text="Add", command=add)
-b1.place(x=500,y=50)
+b1.place(x=650,y=50)
 b2=ctk.CTkButton(root,text="Search By Name",command=searchname)
-b2.place(x=500,y=150)
+b2.place(x=650,y=150)
 b3=ctk.CTkButton(root,text="Search By Place",command=searchplace)
-b3.place(x=500,y=100)
+b3.place(x=650,y=100)
 b4=ctk.CTkButton(root,text="Clear Data Entry",command=clearscreen)
-b4.place(x=500,y=200)
+b4.place(x=650,y=200)
 b5=ctk.CTkButton(root,text="Update Via RUID", command=update)
-b5.place(x=500,y=250)
+b5.place(x=650,y=250)
 b6=ctk.CTkButton(root,text="Search By RUID",command=searchruid)
-b6.place(x=500,y=300)
+b6.place(x=650,y=300)
 b7=ctk.CTkButton(root,text="Delete By RUID",command=delete)
-b7.place(x=500,y=300)
+b7.place(x=650,y=350)
+style=ttk.Style()
+style.configure("Treeview",
+    background="lightblue",
+    foreground="darkblue",
+    rowheight=25,
+    fieldbackground="blue"
 
+)
+cols=("ruid","rname","rplace")
+list1=ttk.Treeview(root,columns=cols,show="headings")
+for coll in cols:
+    list1.heading(coll,text=coll)
+    list1.grid(row=1,column=0,columnspan=2)
+    list1.place(x=10,y=250)
+
+show()
 
 
 #MYSQL
