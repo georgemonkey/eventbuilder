@@ -1,5 +1,5 @@
 from glob import glob
-from turtle import back
+from turtle import back, width
 import matplotlib.pyplot as pl
 import io
 from tkinter import *
@@ -16,19 +16,34 @@ ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
 ctk.set_default_color_theme("dark-blue")  # Themes: blue (default), dark-blue, green
 splashroot=ctk.CTk()
 splashroot.geometry("800x500")
-splashroot.title("Race Builder")
-splash_label= ctk.CTkLabel(splashroot,text="Race Builder!")
+splashroot.title("Event Builder")
+splash_label= ctk.CTkLabel(splashroot,text="Event Builder!")
 splash_label.pack(pady=20)
 lab=ctk.CTkLabel(splashroot,text="Loading...")
 lab.pack(pady=50)
 
 
+
+
+my_progress=ttk.Progressbar(splashroot, orient=HORIZONTAL,length=300,mode='determinate')
+my_progress.pack(pady=20)
+my_progress.start(30)
+author=ctk.CTkLabel(splashroot,text="Created By Parth Amradkar")
+author.pack(pady=100)
+
+    
+    
+
+
+
+
 def main_window():  
     splashroot.destroy()
+    
 
     root=ctk.CTk()
     root.geometry("800x500")
-    root.title("Race Builder")
+    root.title("Event Builder")
     l1=ctk.CTkLabel(root,text="Enter Data")
     l1.place(x=300, y=5)
     #form
