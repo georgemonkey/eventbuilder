@@ -21,6 +21,22 @@ splash_label= ctk.CTkLabel(splashroot,text="Event Builder!")
 splash_label.pack(pady=20)
 lab=ctk.CTkLabel(splashroot,text="Loading...")
 lab.pack(pady=50)
+my_progress=ttk.Progressbar(splashroot, orient=HORIZONTAL,length=300,mode='determinate')
+my_progress.pack(pady=20)
+my_progress.start(50)
+author=ctk.CTkLabel(splashroot,text="Created By Parth Amradkar")
+author.pack(pady=100)
+def loop():
+    global lab2
+    lab.destroy()
+    lab2=ctk.CTkLabel(splashroot,text="Gathering Data")
+    lab2.pack()
+def loop2():
+    lab2.destroy()
+    lab3=ctk.CTkLabel(splashroot,text="Booting!")
+    lab3.pack()  
+
+
 
 
 
