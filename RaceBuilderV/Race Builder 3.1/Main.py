@@ -1,9 +1,10 @@
-from faulthandler import disable
+
 from glob import glob
 from turtle import back, width
 import matplotlib.pyplot as pl
 
 from tkinter import *
+
 from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import END
@@ -73,8 +74,10 @@ def main_window():
     #place^^^
     l5=ctk.CTkLabel(root,text="Quick Add")
     l5.place(x=10,y=165)
-    r1=ctk.CTkRadioButton(root,text="Enable For Quick Add MODE")
-    r1.place(x=125,y=165)
+    #r1=ctk.CTkRadioButton(root,text="Enable For Quick Add MODE",variable="r",value=1)
+    #r1.place(x=125,y=165)
+    #r2=ctk.CTkRadioButton(root,variable="r",value=2)
+    #r2.place(x=155,y=165)
     
     
     def cleartable():
