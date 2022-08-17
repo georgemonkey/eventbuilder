@@ -1,3 +1,4 @@
+from faulthandler import disable
 from glob import glob
 from turtle import back, width
 import matplotlib.pyplot as pl
@@ -23,29 +24,21 @@ lab=ctk.CTkLabel(splashroot,text="Loading...")
 lab.pack(pady=50)
 my_progress=ttk.Progressbar(splashroot, orient=HORIZONTAL,length=300,mode='determinate')
 my_progress.pack(pady=20)
-my_progress.start(50)
+my_progress.start(25)
 author=ctk.CTkLabel(splashroot,text="Created By Parth Amradkar")
 author.pack(pady=100)
 def loop():
-    global lab2
+    
     lab.destroy()
     lab2=ctk.CTkLabel(splashroot,text="Gathering Data")
     lab2.pack()
-def loop2():
-    lab2.destroy()
-    lab3=ctk.CTkLabel(splashroot,text="Booting!")
-    lab3.pack()  
+    
 
 
 
 
 
 
-my_progress=ttk.Progressbar(splashroot, orient=HORIZONTAL,length=300,mode='determinate')
-my_progress.pack(pady=20)
-my_progress.start(30)
-author=ctk.CTkLabel(splashroot,text="Created By Parth Amradkar")
-author.pack(pady=100)
 
     
     
@@ -78,7 +71,12 @@ def main_window():
     t3=ctk.CTkEntry(root)
     t3.place(x=125,y=120)
     #place^^^
-
+    l5=ctk.CTkLabel(root,text="Quick Add")
+    l5.place(x=10,y=165)
+    r1=ctk.CTkRadioButton(root,text="Enable For Quick Add MODE")
+    r1.place(x=125,y=165)
+    
+    
     def cleartable():
         for item in list1.get_children():
             list1.delete(item)   
@@ -312,5 +310,7 @@ def main_window():
     #MYSQL
 
     
-splashroot.after(3000, main_window)
+splashroot.after(5000, main_window)
+lab.after(2000,loop)
+
 mainloop()
