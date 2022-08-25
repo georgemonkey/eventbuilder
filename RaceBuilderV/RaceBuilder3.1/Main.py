@@ -1,4 +1,5 @@
 
+
 from glob import glob
 from turtle import back, width
 import matplotlib.pyplot as pl
@@ -79,7 +80,13 @@ def main_window():
     #r2=ctk.CTkRadioButton(root,variable="r",value=2)
     #r2.place(x=155,y=165)
     
-    
+    def checks():
+        if t1.get()=="":
+            messagebox.showinfo("Information","Please Enter Name Into Entry Box")
+        elif t2.get()=="":    
+            messagebox.showinfo("Information","Please Enter Ruid Into Entry Box")
+        elif t3.get()=="":   
+            messagebox.showinfo("Information","Please Enter Place Into Entry Box")    
     def cleartable():
         for item in list1.get_children():
             list1.delete(item)   
@@ -89,6 +96,7 @@ def main_window():
         ruid1=t2.get()
         rname1=t1.get()
         rplace1=t3.get()
+        checks()
 
         
         mydb=mysql.connector.connect(
@@ -144,6 +152,10 @@ def main_window():
             print(records)
         except:
             messagebox.showinfo("Information","Name Is Not Located In Database")  
+    def clearscreen():
+        t1.delete(0,END)
+        t2.delete(0,END)
+        t3.delete(0,END)
     def searchplace():
         try:   
             rplace1=t3.get() 
@@ -245,6 +257,7 @@ def main_window():
         messagebox.showinfo("Information","Records Deleted Succesfully")
         cleartable()
         show()
+        clearscreen()
     def show():
         try:   
             rname=t1.get() 
@@ -270,10 +283,22 @@ def main_window():
         
         
 
-    def clearscreen():
-        t1.delete(0,END)
-        t2.delete(0,END)
-        t3.delete(0,END)
+    
+    def Value1(event):
+        t1.delete(0, END)
+        t2.delete(0, END)
+        t3.delete(0, END)
+        
+        rowsid=list1.selection()[0]
+        select=list1.set(rowsid)
+        t2.insert(0,select["ruid"])
+        t1.insert(0,select["rname"])
+        t3.insert(0,select["rplace"])
+        cleartable()
+        show()
+    
+        
+        
         
             
 
@@ -308,6 +333,7 @@ def main_window():
         list1.place(x=10,y=250)
 
     show()
+    list1.bind('<Double-Button-1>',Value1)
 
 
     #MYSQL
