@@ -1,3 +1,4 @@
-This is a event builder for races and competions
+This is a event builder for races and stuff.
+-Parth Amradkar
 
-https://trello.com/b/9g57cOsY/kanban-template
+
